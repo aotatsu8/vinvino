@@ -45,7 +45,13 @@ class PostController extends Controller
         
         
         $post = new Post();
+         //var_dump(implode(',', $request->input('dairyspices')));exit;
         $post->title = $request->input('title');
+        $post->fruits = implode(',', $request->input('fruits'));
+        $post->flower = implode(',', $request->input('flower'));
+        $post->dairyspices = implode(',', $request->input('dairyspices'));
+        $post->other = implode(',', $request->input('other'));
+        $post->estimation = implode(',', $request->input('estimation'));
         $post->content = $request->input('content');
         $post->save();
 
