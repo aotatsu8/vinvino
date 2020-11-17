@@ -18,7 +18,8 @@
 
 
 
-
+<div class="card">
+    <div class="card-body">
 <form method="POST" action="/posts/{{ $post->id }}">
     {{ csrf_field() }}
     <input type="hidden" name="_method" value="PUT">
@@ -33,7 +34,14 @@
     
     
     
-    
+    <select name="wine">
+        <option value="">選択なし</option>
+        @foreach ($wines as $wine)
+            <option value="{{ $wine->url }}">
+                {{ $wine->name }}
+            </option>
+        @endforeach
+    </select>
     
     
      <div class="form-group">
@@ -285,7 +293,8 @@
     </div>
     <button type="submit" class="btn btn-outline-primary">Submit</button>
 </form>
-
+</div>
+</div>
 <a href="/posts/{{ $post->id }}">Show</a> | 
 <a href="/posts">Back</a>
 

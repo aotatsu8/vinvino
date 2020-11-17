@@ -15,14 +15,23 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">{{ $post->title }}</h5>
+                <p>香り</p>
                 <p class="card-text">{{ $post->fruits }}</p>
                 <p class="card-text">{{ $post->flower }}</p>
                 <p class="card-text">{{ $post->dairyspices }}</p>
                 <p class="card-text">{{ $post->other }}</p>
-                <p class="card-text">{{ $post->estimation }}</p>
-                <p class="card-text">{{ $post->content }}</p>
+                <p>評価</p>
+                @component('posts.chart',
+                    ['post'=>$post->estimation, 'key'=>$loop->iteration])
+                @endcomponent
+                 <p class="card-text">{{ $post->content }}</p>
 
                 <div class="d-flex" style="height: 36.4px;">
+                    @if($post->url =='')
+                    
+                    @else
+                     <a class="btn btn-outline-success"href="{{ $post->url }}" target="_blank">購入ページへGO</a>
+                     @endif
                     <a href="/posts/{{ $post->id }}" class="btn btn-outline-primary">Show</a>
                     <a href="/posts/{{ $post->id }}/edit" class="btn btn-outline-primary">Edit</a>
                     <form action="/posts/{{ $post->id }}" method="POST" onsubmit="if(confirm('Delete? Are you sure?')) { return true } else {return false };">

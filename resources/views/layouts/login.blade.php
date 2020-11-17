@@ -32,7 +32,8 @@
         }
 
         .bg-home {
-            background-color: #1e90ff;
+            background-image: url(../storage/img/wine.jpg);
+            background-size:  cover; 
         }
     </style>
 </head>

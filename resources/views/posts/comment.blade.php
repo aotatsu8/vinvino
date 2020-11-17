@@ -20,10 +20,14 @@
 
 
 <div>
-    <div class="form-group">
-        <textarea class="form-control" name="content">{{old('content')}}</textarea>
-    </div>
-    <button type="submit" class="btn btn-outline-primary">Submit</button>
+    <form method="POST" action="/comment">
+        @csrf
+        <div class="form-group">
+            <input type="hidden" name="post_id" value="{{$id}}">
+            <textarea class="form-control" name="content">{{old('content')}}</textarea>
+        </div>
+        <button type="submit" class="btn btn-outline-primary">Submit</button>
+    </form>
 </div>
     <a href="/posts">Back</a>
     @endsection

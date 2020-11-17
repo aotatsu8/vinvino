@@ -4,7 +4,7 @@
 
 @section('content')
 
-<h1>Profile</h1>
+<head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@master/devicon.min.css"></head>
 
 <style>
 
@@ -104,6 +104,14 @@ header {
   .follow:hover {
     background-color: #167abd;
     cursor: pointer; }
+    
+    .sns{
+    text-align:center;
+    }
+   button.btn.btn-primary {
+    margin: 1rem;
+}
+    
   
 </style>
 <body>
@@ -126,15 +134,14 @@ $(document).ready(
             <div class="bio">
         <img src="../storage/img/DSC_0010.jpg" alt="background" class="bg">
                 <div class="desc">
-                    <h3>アカウント名</h3>
-                    <p>1992.11.4 長野県生まれ東京都在住。<br>
-          18歳の時に上京、都内専門学校へ進��。<br>
-          7年間洋食業界で勤務。IT業界に興味を持ち27歳で<br>
-          プログラミングスクールに入る。<br>
-          現在は転職活動中。<br>
-          趣味はスポーツ、音楽、散歩、お酒。<br>
-          お酒は特にワインが好きで<br>
-          2019年にソムリエ資格を取得。<br></p>
+                    <h3>自己紹介</h3>
+                    <p>1992.11.4 長野県生まれ東京都在住。18歳の時に上京。<br>
+                    このシステムはLaravelの学習の為に、初めて作った作品です。<br>
+                    ワイン好きの人が自分が飲んだワインを記録し、それについて他ユーザーが<br>
+                    コメントやいいねができ、ワインに詳しくない人がこれを見て参考にできるような作品を作りました。<br>
+                    趣味はスポーツ、音楽、散歩、お酒。<br>
+                    お酒は特にワインが好きで<br>
+                    2019年にソムリエ資格を取得。<br></p>
                 </div>
             </div>
             
@@ -146,25 +153,9 @@ $(document).ready(
 
         </header>
 
-        <div class="content">
-            <div class="data">
-                <ul>
-                    <li>
-                        2,934
-                        <span>Tweets</span>
-                    </li>
-                    <li>
-                        1,119
-                        <span>Followers</span>
-                    </li>
-                    <li>
-                        530
-                        <span>Following</span>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="follow"> <div class="icon-twitter"></div> Follow</div>
+        <div class="sns">
+           <button type="button" class="btn btn-primary"><i class="devicon-twitter-plain"></i>Twitter</button>
+           <button type="button" class="btn btn-primary"><i class="devicon-facebook-plain"></i>Facebook</button>
         </div>
 
     </div>

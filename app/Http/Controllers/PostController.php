@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Wine;
+use App\Like;
+use App\Comment;
 use Illuminate\Http\Request;
+use Auth;
 
 class PostController extends Controller
 {
@@ -15,7 +19,6 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-
         return view('posts.index', compact('posts'));
         
     }
@@ -27,7 +30,8 @@ class PostController extends Controller
      */
     public function create()
     {
-         return view('posts.create');
+        $wines = Wine::all();
+        return view('posts.create', compact('wines'));
     }
 
     /**
@@ -45,14 +49,15 @@ class PostController extends Controller
         
         
         $post = new Post();
-         //var_dump(implode(',', $request->input('dairyspices')));exit;
+        // var_dump($request->input('wine'));exit;
         $post->title = $request->input('title');
-        $post->fruits = implode(',', $request->input('fruits'));
-        $post->flower = implode(',', $request->input('flower'));
-        $post->dairyspices = implode(',', $request->input('dairyspices'));
-        $post->other = implode(',', $request->input('other'));
-        $post->estimation = implode(',', $request->input('estimation'));
+        $post->fruits = $request->input('fruits') == null ? ''  : implode(',', $request->input('fruits'));
+        $post->flower = $request->input('flower') == null ? ''  : implode(',', $request->input('flower'));
+        $post->dairyspices = $request->input('dairyspices') == null ? ''  :  implode(',', $request->input('dairyspices'));
+        $post->other = $request->input('other') == null ? ''  : implode(',', $request->input('other'));
+        $post->estimation = $request->input('estimation') == null ? ''  : implode(',', $request->input('estimation'));
         $post->content = $request->input('content');
+        $post->url = $request->input('wine') == null ? '' : $request->input('wine');
         $post->save();
 
         return redirect()->route('posts.show', ['id' => $post->id])->with('message', 'Post was successfully created.');
@@ -67,7 +72,19 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('posts.show', compact('post'));
+        $user = Auth::user();
+        $comments = Comment::where('post_id', $post->id)->get();
+        $likes = Like::where('post_id', $post->id)->get();
+        $count = count($likes);
+        
+        // 自分がいいねしているかチェック
+        $flg = 0;
+        foreach($likes as $like) {
+            if ($like->user == $user->name) {
+                $flg = 1;
+            }
+        }
+        return view('posts.show', compact('post', 'comments', 'count', 'flg'));
     }
 
     /**
@@ -76,11 +93,16 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    /*public function edit(Post $post)
     {
         return view('posts.edit', compact('post'));
-    }
+    }*/
 
+     public function edit(Post $post)
+    {
+        $wines = Wine::all();
+        return view('posts.edit', compact('wines','post'));
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -98,9 +120,15 @@ class PostController extends Controller
         
         
         $post->title = $request->input('title');
+        $post->fruits = $request->input('fruits') == null ? ''  : implode(',', $request->input('fruits'));
+        $post->flower = $request->input('flower') == null ? ''  : implode(',', $request->input('flower'));
+        $post->dairyspices = $request->input('dairyspices') == null ? ''  : implode(',', $request->input('dairyspices'));
+        $post->other = $request->input('other') == null ? ''  : implode(',', $request->input('other'));
+        $post->estimation = $request->input('estimation') == null ? ''  : implode(',', $request->input('estimation'));
         $post->content = $request->input('content');
+        $post->url = $request->input('wine') == null ? '' : $request->input('wine');
         $post->save();
-
+        
         return redirect()->route('posts.show', ['id' => $post->id])->with('message', 'Post was successfully updated.');
     }
 

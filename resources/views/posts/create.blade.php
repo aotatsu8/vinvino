@@ -6,7 +6,8 @@
 
 
 <h1>New Post</h1>
-
+<div class="card">
+    <div class="card-body">
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -24,18 +25,17 @@
         <input type="text" class="form-control" aria-describedby="emailHelp" name="title" value="{{old('title')}}">
     </div>
     
+    <select name="wine">
+        <option value="">選択なし</option>
+        @foreach ($wines as $wine)
+            <option value="{{ $wine->url }}">
+                {{ $wine->name }}
+            </option>
+        @endforeach
+    </select>
     
     
     
-    
-    
-     <div class="form-group">
-        <button class="btn btn-outline-primary">
-            <svg width="1.0625em" height="1em" viewBox="0 0 17 16" class="bi bi-image" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M14.002 2h-12a1 1 0 0 0-1 1v9l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094L15.002 9.5V3a1 1 0 0 0-1-1zm-12-1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm4 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-            </svg>
-        </button>
-    </div>
      <div class="form-group">
         <label for="exampleCheckBox">Aroma</label>
         <br>
@@ -273,7 +273,8 @@
     </div>
     <button type="submit" class="btn btn-outline-primary">Submit</button>
 </form>
-
+</div>
+</div>
 <a href="/posts">Back</a>
 
 @endsection
