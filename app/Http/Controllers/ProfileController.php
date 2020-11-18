@@ -13,7 +13,7 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $profile = new Profile();
-        $profileData = $profile::where('user', $user->name)->get();
+        if ($user) $profileData = $profile::where('user', $user->name)->get();
         if (Auth::guest()) {
             return redirect()->route('login');
         }else if (count($profileData) > 0) {
