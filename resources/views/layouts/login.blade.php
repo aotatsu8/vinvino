@@ -32,7 +32,7 @@
         }
 
         .bg-home {
-            background-image: url(../storage/img/wine.jpg);
+            background-image: url( {{ asset('img/wine.jpg') }} );
             background-size:  cover; 
         }
     </style>

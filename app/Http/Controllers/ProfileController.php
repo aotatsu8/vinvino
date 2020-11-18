@@ -13,10 +13,12 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $profile = new Profile();
+        $profileData = $profile::where('user', $user->name)->get();
         if (Auth::guest()) {
             return redirect()->route('login');
-        }else if ($user) {
-                  return view('posts.user',compact('profile'));
+        }else if (count($profileData) > 0) {
+            $profile = $profileData[0];
+            return view('posts.user',compact('profile'));
         }else{
              return view('posts.createProfile');
         }
