@@ -43,9 +43,9 @@ Route::resource('like', 'LikeController');
 Route::resource('user', 'ProfileController');
 
 //Route::resource('user', 'ProfileController@store');
-//Route::get('user',function () {
-  // return view('posts.user');
-//s})->name('user');
+//Route::get('users',function () {
+  // return view('posts.users');
+//})->name('users');
 
 //Route::get('createProfile',function () {
 //   return view('posts.createProfile');

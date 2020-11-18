@@ -9,7 +9,7 @@
   <!--<img class="card-img-top" src="/images/pathToYourImage.png" alt="Card image cap">-->
   <div class="card-body">
       <form method="POST" action="/user">
-        @csrf
+      @csrf
   <div class="form-group">
     <label for="formGroupExampleInput">お名前</label>
     <input type="text" class="form-control" name="post_name" id="formGroupExampleInput"  placeholder="名前を入力してください">

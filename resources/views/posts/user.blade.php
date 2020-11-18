@@ -8,10 +8,10 @@
 <form>
 <div class="card">
   <div class="card-header">
-    <h2>tatuya aoki</h2>
+    <h2> {{$profile->name}} </h2>
   </div>
   <div class="card-body">
-    <p class="card-text">hello</p>
+    <p class="card-text"> {{$profile->myself}} </p>
   </div>
 </div>
 </form>

@@ -15,8 +15,8 @@ class ProfileController extends Controller
         $profile = new Profile();
         if (Auth::guest()) {
             return redirect()->route('login');
-        }else if (is_array ($profile) && count($profile)>0) {
-                  return('posts.user');
+        }else if ($user) {
+                  return view('posts.user',compact('profile'));
         }else{
              return view('posts.createProfile');
         }
@@ -26,15 +26,15 @@ class ProfileController extends Controller
     
  public function store(Request $request)
     {
-        var_dump($request->input('post_name'));exit;
+        //var_dump($request->input('post_name'));exit;
         $user = Auth::user();
         $profile = new Profile();
-        $profile->post_id = $request->input('post_name');
         $profile->user = $user->name;
-        $profile->comment = $request->input('content');
-        $comment->save();
+        $profile->name = $request->input('post_name');
+        $profile->myself = $request->input('content');
+        $profile->save();
         
-        return redirect()->route('posts.user');
+        return redirect()->route('user.index');
     }   
     
     
