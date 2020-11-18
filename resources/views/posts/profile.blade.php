@@ -132,7 +132,7 @@ $(document).ready(
     <div class="profile">
         <header>
             <div class="bio">
-        <img src="{{ asset('../storage/img/DSC_0010.jpg') }}" alt="background" class="bg">
+        <img src="{{ asset('storage/img/DSC_0010.jpg') }}" alt="background" class="bg">
                 <div class="desc">
                     <h3>自己紹介</h3>
                     <p>1992.11.4 長野県生まれ東京都在住。18歳の時に上京。<br>
@@ -146,7 +146,7 @@ $(document).ready(
             </div>
             
             <div class="avatarcontainer">
-                <img src="{{ asset('../storage/img/DSCF8436-Edit.jpg') }}" alt="avatar" class="avatar">
+                <img src="{{ asset('storage/img/DSCF8436-Edit.jpg') }}" alt="avatar" class="avatar">
                         <div class="icon-twitter"></div>
             </div>
 
